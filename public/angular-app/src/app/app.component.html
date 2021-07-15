@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-fixed-top bg-dark" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/" class="nav-link">Home</a></li>
+        <li><a routerLink="restaurants" class="nav-link">Restaurants</a></li>
+        <li><a *ngIf="!isAuthenticated()" routerLink="/register"  class="nav-link">Register</a></li>
+        <li><a *ngIf="isAuthenticated()" routerLink="profile" class="nav-link">Profile</a></li>
+      </ul>
+      <div class="col-xs-6">
+        <form *ngIf="!isAuthenticated()" class="navbar-form navbar-right" role="login" (submit)="login()">
+          <div class="form-group" ng-class="{'has-error': vm.err}">
+            <input type="text" name="username" class="form-control input-sm" placeholder="Username"
+              [(ngModel)]="username" autocapitalize="none">
+          </div>
+          <div class="form-group" ng-class="{'has-error': vm.err}">
+            <input type="password" name="password" class="form-control input-sm" placeholder="Password"
+              [(ngModel)]="password" autocapitalize="none">
+          </div>
+          <button type="submit" class="btn btn-sm btn-success">Login</button>
+        </form>
+      </div>
+      <ul *ngIf="isAuthenticated()" class="new navbar-nav navbar-right">
+        <li>
+          <p class="navbar-text">Welcome </p>
+        </li>
+        <li><button class="navbar-btn btn-sm btn-info" (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="conainer">
+  <router-outlet></router-outlet>
+</div>

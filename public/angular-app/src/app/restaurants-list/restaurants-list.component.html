@@ -1,0 +1,21 @@
+<ul>
+    <li *ngFor="let restaurant of restaurants">
+        <a routerLink="/restaurants/{{restaurant._id}}">{{restaurant.name}}</a><br>
+    </li>
+</ul>
+
+<form *ngIf="isAuthenticated()" name="gameForm" (submit)="addRestaurant()" >
+    To add a new Restaurant please fill in the fields below: <br>
+    <p *ngIf="errorMessage.length" style="color: red;">{{errorMessage}}</p>
+
+    Name: <input type="text" name="title" required [(ngModel)]="newName" style="color: black;" /><br>
+
+    Address: <input type="text" name="price" required [(ngModel)]="newAddress" style="color: black;" /><br>
+
+   
+
+    <button type="submit" class="btn-success">Add Game</button>
+    <p *ngIf="success.length" style="color: green;">{{newName}} {{success}}</p>
+    
+</form> 
+
